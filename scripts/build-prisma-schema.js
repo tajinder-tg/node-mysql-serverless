@@ -8,12 +8,13 @@ const SCHEMA_FILE = path.join(PRISMA_DIR, 'schema.prisma');
 // Base schema content
 const baseSchema = `
 generator client {
-  provider = "prisma-client"
+  provider = "prisma-client-js"
   output   = "../src/shared/db/prisma"
 }
 
 datasource db {
   provider = "mysql"
+  url      = env("DATABASE_URL")
 }
 
 `;
@@ -29,7 +30,7 @@ const modelContent = modelFiles
     const content = fs.readFileSync(path.join(MODELS_DIR, file), 'utf8');
     // Remove any import statements from the model files
     const cleanedContent = content.replace(/^import.*$/gm, '');
-    
+
     // Ensure proper model formatting
     const formattedContent = cleanedContent
       .replace(/\n\s*\n/g, '\n') // Remove multiple empty lines
@@ -39,7 +40,7 @@ const modelContent = modelFiles
       .replace(/@default\("([^"]*)\n/g, '@default("$1")\n') // Fix unclosed JSON default values
       .replace(/\n\s*@/g, '\n  @') // Fix attribute indentation
       .trim();
-    
+
     return `// Model from ${file}\n${formattedContent}\n`;
   })
   .join('\n');

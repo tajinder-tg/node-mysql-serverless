@@ -20,7 +20,7 @@ export const authLogin = async (req: Request, res: Response) => {
 };
 
 export const authRegister = async (req: Request, res: Response) => {
-  try {
+  try {    
     const response = await registerUser(req.body);
     return sendResponse(req, res, response);
   } catch (error: any) {

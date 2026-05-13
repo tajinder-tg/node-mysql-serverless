@@ -5,6 +5,9 @@ import { corsMiddleWare } from "../shared/middleware/cors.middleware";
 import { authRoute } from "./routes/authRoute";
 import { RESPONSE_CODES } from "../shared/utils/constants";
 import { authMiddleWare } from "../shared/middleware/auth.middleware";
+import dotenv from 'dotenv';
+dotenv.config();
+
 
 const app = express();
 
@@ -21,7 +24,6 @@ const api_version = process.env.API_VERSION;
 app.get(`/${api_version}/auth/healthcheck`, async (req, res) => {
 
   // const connectionSuccess = await connectToDatabase();
-  
   const response = {
     status: 1,
     status_code: RESPONSE_CODES.GET,

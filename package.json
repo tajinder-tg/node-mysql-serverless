@@ -23,8 +23,7 @@
   },
   "homepage": "https://github.com/tajinder-tg/node-prisma-demo#readme",
   "dependencies": {
-    "@prisma/adapter-pg": "^7.2.0",
-    "@prisma/client": "^7.2.0",
+    "@prisma/client": "^6.16.2",
     "@types/node": "^25.0.3",
     "bcryptjs": "^3.0.3",
     "cors": "^2.8.5",
@@ -33,15 +32,16 @@
     "joi": "^18.0.2",
     "jsonwebtoken": "^9.0.3",
     "moment-timezone": "^0.6.0",
-    "serverless": "^3.40.0",
+    "prisma": "^6.16.2",
+    "serverless": "^4.35.1",
     "serverless-http": "^4.0.0",
-    "serverless-offline": "^14.4.0"
+    "serverless-offline": "^14.4.0",
+    "axios": "^1.9.0"
   },
   "devDependencies": {
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
     "@types/jsonwebtoken": "^9.0.10",
-    "prisma": "^7.2.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
   }
