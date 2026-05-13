@@ -1,22 +1,26 @@
 service: node-ts-serverless
+useDotenv: true
 
 provider:
   name: aws
   runtime: nodejs22.x
+  stage: staging
+  timeout: 30
   environment:
     API_VERSION: ${env:API_VERSION, 'api_v1'}
     NODE_ENV: ${env:NODE_ENV, 'staging'}
-    DATABASE_URL: ${env:DATABASE_URL, 'mysql://root:password@127.0.0.1:3306/node_serverless'}
+    DATABASE_URL: ${env:DATABASE_URL, 'mysql://root:@127.0.0.1:3306/node_serverless'}
 
 custom:
   apiPrefix: ${env:API_VERSION, 'api_v1'}
+  serverless-offline:
+    noPrependStageInUrl: true
+    httpPort: ${env:PORT, '5000'}
+    lambdaPort: 5003
+    apiPrefix: ${self:custom.apiPrefix}
 
 plugins:
   - serverless-offline
-
-serverless-offline:
-  httpPort: ${env:PORT, '5000'}
-  apiPrefix: ${self:custom.apiPrefix}
 
 functions:
   auth:
